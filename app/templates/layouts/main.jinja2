@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
-
+  <meta name="description" content="Flask-Starter-App - Python Flask Starter Template">
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
+  <title>{% block title %}{{ page_title|default('Flask-Starter') }}{% endblock %} - Flask-Starter</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   {% block meta %}{% endblock %}
-
 </head>
 <body>
-  Hey! I'm your layout.
+  <p>Hey! I'm your layout.</p>
 
   {% block content %}{% endblock %}
   {% block scripts %}{% endblock %}
-
 </body>
 </html>
