@@ -3,7 +3,7 @@
 Copyright (c) 2019 - present AppSeed.us
 """
 
-bind = '0.0.0.0:80'
+bind = 8080
 workers = 1
 threads = 8
 timeout = 0
