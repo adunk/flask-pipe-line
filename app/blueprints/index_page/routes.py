@@ -1,5 +1,7 @@
 from flask import Blueprint, make_response, render_template, current_app, Response
 
+from app.blueprints.index_page.views.index import IndexView
+
 blueprint: Blueprint = Blueprint(
     'index',
     __name__,
@@ -7,11 +9,4 @@ blueprint: Blueprint = Blueprint(
     static_folder='static'
 )
 
-
-@blueprint.route("/", methods=["get"])
-def index_route() -> Response:
-    return make_response(
-        render_template(
-            "index.jinja2",
-        )
-    )
+blueprint.add_url_rule('/', view_func=IndexView.as_view('index_route'))

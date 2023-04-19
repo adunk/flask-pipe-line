@@ -1,10 +1,48 @@
 {% extends 'layouts/main.jinja2' %}
 
 {% block content %}
-    <h1 class="text-3xl font-bold underline">Hello. Welcome to your index page.</h1>
-    <p>Testing Testing 1 2</p>
+    <h1 class="display-4">Hello. Welcome to your index page.</h1>
 
-  <p><a href="{{ url_for("about.about_page") }}">About me</a></p>
+    <h2>App Setup</h2>
+    <p>This application is built on Flask and designed to easily deploy to Google Cloud Run</p>
 
-  <p>This value defined in <i>app/jinja/context_processor.py</i>: {{ application_name }}</p>
+    <h3>Steps</h3>
+    <ol>
+    <li>Setup repo in GitHub</li>
+    <li>Create a new Google Cloud Account</li>
+    <li>Create a new GC Project</li>
+    <li>
+        <p>Enable Cloud Build API and Cloud Run API.</p>
+        <div class="p-3 mb-3 text-bg-light rounded-2 border">
+            <code>
+            PROJECT_NUMBER="$(gcloud projects describe ${PROJECT_ID} --format='get(projectNumber)')"<br>
+            <br>
+            gcloud projects add-iam-policy-binding ${PROJECT_NUMBER} \<br>
+            --member=serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com \<br>
+            --role=roles/run.admin<br>
+            <br>
+            gcloud iam service-accounts add-iam-policy-binding \<br>
+            ${PROJECT_NUMBER}-compute@developer.gserviceaccount.com \<br>
+            --member="serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com" \<br>
+            --role="roles/iam.serviceAccountUser"<br>
+            </code>
+        </div>
+    </li>
+    <li>
+        <p>Allow unauthenticated access to demo-app service on cloud run</p>
+        <div class="p-3 mb-3 text-bg-light rounded-2 border">
+            <code>
+                gcloud run services add-iam-policy-binding demo-app \<br>
+                --member="allUsers" \<br>
+                --role="roles/run.invoker" \<br>
+                --region=us-central1 \<br>
+                --platform managed<br>
+            </code>
+        </div>
+    </li>
+    <li>View build results</li>
+    <li>Access demo-app service</li>
+    </ol>
+
+    <p>This value defined in <i>app/jinja/context_processor.py</i>: {{ application_name }}</p>
 {% endblock %}

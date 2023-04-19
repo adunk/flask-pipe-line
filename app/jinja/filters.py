@@ -1,6 +1,6 @@
 """
 https://flask.palletsprojects.com/en/2.2.x/templating/#registering-filters
-Check list of default Jinja filters
+Check list of resources Jinja filters
 https://jinja.palletsprojects.com/en/3.1.x/templates/#list-of-builtin-filters
 """
 

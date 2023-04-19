@@ -2,7 +2,6 @@ import os
 
 from flask import Flask, request, redirect
 from flask_debugtoolbar import DebugToolbarExtension
-from dotenv import dotenv_values
 
 # from app.ext.sqlalchemy.database import init_database
 
@@ -26,8 +25,7 @@ def init_configuration(app: Flask) -> None:
     app.config.from_prefixed_env()
 
     # Variables defined here will override those in the default configuration
-    config = dotenv_values(".env")
-    app.config.from_object(f"config.{config['APP_CONFIG']}")
+    app.config.from_object(f"config.{os.environ.get('APP_CONFIG')}")
 
     # Load the configuration from the instance folder
     app.config.from_pyfile('config.py')

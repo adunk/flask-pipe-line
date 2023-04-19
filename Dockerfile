@@ -23,4 +23,3 @@ RUN pip install -r requirements.txt
 # For environments with multiple CPU cores, increase the number of workers
 # to be equal to the cores available.
 CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 wsgi:application
-# CMD ["gunicorn", "--config", "gunicorn-cfg.py", "wsgi:application"]

@@ -8,6 +8,7 @@ __pycache__/
 build/
 dist/
 downloads/
+venv/
 
 # Installer logs
 pip-log.txt
@@ -17,3 +18,4 @@ pip-delete-this-directory.txt
 node_modules/
 
 .idea
+.env
